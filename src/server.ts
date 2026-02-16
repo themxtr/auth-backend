@@ -10,10 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:3000",
-    "https://auth-frontend-ten-iota.vercel.app/"
-  ]
+  origin: "*" , 
 }));
 
 app.use(express.json());
