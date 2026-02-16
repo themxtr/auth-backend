@@ -1,13 +1,8 @@
 import admin from "firebase-admin";
-import { ServiceAccount } from "firebase-admin";
-import path from "path";
 
-const serviceAccountPath = path.join(
-  __dirname,
-  "../../serviceAccountKey.json"
+const serviceAccount = JSON.parse(
+  process.env.FIREBASE_SERVICE_ACCOUNT as string
 );
-
-const serviceAccount = require(serviceAccountPath) as ServiceAccount;
 
 if (!admin.apps.length) {
   admin.initializeApp({
@@ -15,6 +10,4 @@ if (!admin.apps.length) {
   });
 }
 
-const db = admin.firestore();
-
-export default db;
+export default admin.firestore();
