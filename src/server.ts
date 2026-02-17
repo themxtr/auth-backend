@@ -20,7 +20,7 @@ app.use("/api/auth", authRoutes);
 
 // Health Check
 app.get("/", (_req, res) => {
-  res.status(200).json({ message: "Server running properly" });
+  res.status(200).json({ message: "CI/CD Working Successfully 🚀" });
 });
 
 // Start Server
