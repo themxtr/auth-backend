@@ -1,11 +1,12 @@
+import dotenv from "dotenv";
+dotenv.config();
+
 import { Request, Response } from "express";
-import db from "../config/firebase";
+import {db} from "../config/firebase";
 import { User } from "../models/user";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
