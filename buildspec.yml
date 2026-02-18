@@ -18,6 +18,10 @@ phases:
       - npm run build
 
   post_build:
-    commands:
-      - scp -i key.pem -o StrictHostKeyChecking=no -r . ec2-user@13.49.49.161:/home/ec2-user/app
-      - ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@13.49.49.161 "cd app && npm install && pm2 restart all"
+  commands:
+    - eval $(ssh-agent -s)
+    - ssh-add key.pem
+    - mkdir -p ~/.ssh
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+    - scp -r . ec2-user@13.49.49.161:/home/ec2-user/app
+    - ssh ec2-user@13.49.49.161 "cd /home/ec2-user/app && npm install && pm2 restart all"
