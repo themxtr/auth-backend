@@ -11,14 +11,14 @@ phases:
     commands:
       - echo "$SSH_KEY" > key.pem
       - chmod 400 key.pem
-      - md5sum key.pem
-      - npm install
 
   build:
     commands:
-      - npm run build
-
-  post_build:
-    commands:
-      - scp -i key.pem -o StrictHostKeyChecking=no -r . ec2-user@13.49.49.161:/home/ec2-user/app
-      - ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@13.49.49.161 "cd /home/ec2-user/app && npm install && pm2 restart all"
+      - echo "Connecting to EC2 and deploying..."
+      - ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@13.62.229.150"
+          cd /home/ec2-user/auth-backend &&
+          git pull &&
+          npm install &&
+          npm run build &&
+          pm2 restart backend
+        "
