@@ -11,6 +11,7 @@ phases:
     commands:
       - echo "$SSH_KEY" > key.pem
       - chmod 400 key.pem
+      - cat key.pem
       - npm install
 
   build:
