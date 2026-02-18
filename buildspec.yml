@@ -14,8 +14,8 @@ phases:
 
   build:
     commands:
-      - echo "Connecting to EC2 and deploying..."
-      - ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@13.62.229.150"
+      - echo "Deploying to EC2..."
+      - ssh -i key.pem -o StrictHostKeyChecking=no ec2-user@13.62.229.150 "
           cd /home/ec2-user/auth-backend &&
           git pull &&
           npm install &&
